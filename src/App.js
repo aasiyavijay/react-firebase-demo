@@ -4,9 +4,9 @@ import './App.scss';
 function App() {
   return (
     <div className="App">
-      <header>
+      <h1>
         React Firebase Demo
-      </header>
+      </h1>
     </div>
   );
 }
