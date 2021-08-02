@@ -1,0 +1,40 @@
+$checkbox-color: #2bd49b;
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  &-input {
+    visibility: hidden;
+    position: absolute;
+
+    &:checked + .checkbox {
+      .checkbox-icon {
+        background-color: $checkbox-color;
+        border-color: $checkbox-color;
+      }
+      &:hover {
+        .checkbox-icon {
+          border-color: #fff;
+        }
+      }
+    }
+  }
+  &-icon {
+    border: 2px solid #e5e5e5;
+    background-color: #fff;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &:hover {
+    .checkbox-icon {
+      background-color: $checkbox-color;
+      border-color: $checkbox-color;
+    }
+  }
+}
