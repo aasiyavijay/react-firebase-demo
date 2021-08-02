@@ -1,11 +1,10 @@
 import {
-  BrowserRouter as Router,
   Link,
   useLocation
 } from 'react-router-dom';
 
 import { ReactComponent as Grid } from './../../images/grid.svg';
-import { ReactComponent as Clipboard } from './../../images/clipboard.svg';
+import { ReactComponent as ClipboardNotes } from './../../images/clipboard-notes.svg';
 
 const Nav = () => {
   const location = useLocation();
@@ -26,7 +25,7 @@ const Nav = () => {
       <li className={`sidebar-nav-item ${splitLocation[1] === "notes" ? "active" : ""}`}>
         <Link to="/notes">
           <span className="icon">
-            <Clipboard />
+            <ClipboardNotes />
           </span>
         </Link>
       </li>
