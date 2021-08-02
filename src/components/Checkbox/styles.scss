@@ -4,6 +4,9 @@ $checkbox-color: #2bd49b;
   display: flex;
   align-items: center;
   cursor: pointer;
+  &-container {
+    margin-bottom: 16px;
+  }
   &-input {
     visibility: hidden;
     position: absolute;
@@ -30,6 +33,9 @@ $checkbox-color: #2bd49b;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  &-label {
+    font-size: 8px;
   }
   &:hover {
     .checkbox-icon {
