@@ -1,5 +1,4 @@
 import { ReactComponent as Logo } from './../../images/logo.svg';
-
 import Avatar from './../../images/avatar.jpg';
 
 import './styles.scss';
@@ -9,7 +8,9 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar-logo">
-        <Logo />
+        <a href="/">
+          <Logo />
+        </a>
       </div>
       <div className="sidebar-divider"></div>
       <div className="sidebar-nav-container">

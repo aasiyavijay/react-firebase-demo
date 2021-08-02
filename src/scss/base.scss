@@ -17,17 +17,22 @@ body {
 h1 {
   font-size: 28px;
   font-weight: 700;
+  margin: 0;
 }
 
 h2 {
   font-size: 12px;
   font-weight: 700;
+  margin: 0;
 }
 
 p {
   font-size: 8px;
 }
 
-.App {
-  text-align: center;
+.main {
+  margin-left: 72px;
+  padding: 24px;
+  min-height: 100vh;
+  background-color: #e5e5e5;
 }
