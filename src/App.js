@@ -1,5 +1,6 @@
 
 import './App.scss';
+import Sidebar from './components/Sidebar';
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <h1>
         React Firebase Demo
       </h1>
+      <Sidebar />
     </div>
   );
 }
