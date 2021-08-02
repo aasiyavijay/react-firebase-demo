@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from 'axios';
 import ReactTooltip from 'react-tooltip';
 import database from './../../firebase';
 
@@ -10,8 +11,22 @@ import { ReactComponent as Grid } from './../../images/grid.svg';
 import { ReactComponent as Clipboard } from './../../images/clipboard.svg';
 import { ReactComponent as Info } from './../../images/question-circle.svg';
 
+const continentCodeMap = {
+  "AF": "Africa",
+  "AN": "Antarctica",
+  "AS": "Asia",
+  "EU": "Europe",
+  "NA": "North America",
+  "OC": "Oceania",
+  "SA": "South America"
+}
+
 const Dashboard = () => {
   const [notes, setNotes] = useState();
+  const [location, setLocation] = useState({
+    country: '',
+    timezone: ''
+  })
 
   useEffect(() => {
     const notesRef = database.ref('notes/note');
@@ -19,7 +34,23 @@ const Dashboard = () => {
       const note = snapshot.val();
       setNotes(note);
     })
+
+    getGeoInfo();
+
   }, [])
+
+  const getGeoInfo = () => {
+    axios.get('https://ipapi.co/json/').then((response) => {
+      let data = response.data;
+      setLocation({
+        ...location,
+        country: data.country_name,
+        continent_code: data.continent_code
+      });
+    }).catch((error) => {
+      console.log(error);
+    });
+  };
 
   const handleNotesChange = e => {
     const note = e.target.value;
@@ -78,8 +109,8 @@ const Dashboard = () => {
             title={<span>Your Location</span>}
             content={
               <div className="content-box">
-                <p>Country: Sweden</p>
-                <p>Continent: Europe</p>
+                <p>Country : {location && location.country}</p>
+                <p>Continent : {location && location.continent_code && continentCodeMap[location.continent_code]}</p>
               </div>
             }
           />
