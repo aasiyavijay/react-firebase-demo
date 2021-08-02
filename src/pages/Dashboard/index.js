@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactTooltip from 'react-tooltip';
+import database from './../../firebase';
 
 import Card from "../../components/Card";
 import Checkbox from "../../components/Checkbox";
@@ -10,12 +11,24 @@ import { ReactComponent as Clipboard } from './../../images/clipboard.svg';
 import { ReactComponent as Info } from './../../images/question-circle.svg';
 
 const Dashboard = () => {
-  const [notes, setNotes] = useState(`Instructions:
-  \nThis is an input text field you need to create, make sure that the area for text is with correct padding. Limit text to 500 characters.
-  \nThis text must be stored in a Firebase realtime database.`)
+  const [notes, setNotes] = useState();
 
-  const handleNotesChange = e => setNotes(e.target.value);
+  useEffect(() => {
+    const notesRef = database.ref('notes/note');
+    notesRef.on('value', (snapshot) => {
+      const note = snapshot.val();
+      setNotes(note);
+    })
+  }, [])
 
+  const handleNotesChange = e => {
+    const note = e.target.value;
+    console.log(note);
+    setNotes(note);
+    database.ref("notes").set({
+      note: note
+    });
+  }
 
   return (
     <div className="dashboard">
