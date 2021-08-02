@@ -35,26 +35,23 @@ const Dashboard = () => {
       setNotes(note);
     })
 
-    getGeoInfo();
-
-  }, [])
-
-  const getGeoInfo = () => {
-    axios.get('https://ipapi.co/json/').then((response) => {
-      let data = response.data;
-      setLocation({
-        ...location,
-        country: data.country_name,
-        continent_code: data.continent_code
+    if (!location.country) {
+      axios.get('https://ipapi.co/json/').then((response) => {
+        let data = response.data;
+        setLocation({
+          ...location,
+          country: data.country_name,
+          continent_code: data.continent_code
+        });
+      }).catch((error) => {
+        console.log(error);
       });
-    }).catch((error) => {
-      console.log(error);
-    });
-  };
+    }
+
+  }, [location])
 
   const handleNotesChange = e => {
     const note = e.target.value;
-    console.log(note);
     setNotes(note);
     database.ref("notes").set({
       note: note
